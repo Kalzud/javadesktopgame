@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../css/bootstrap-theme.css" rel="stylesheet">
+    <!--Link to bootstrap-->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--    <link href="css/my-style.css" rel="stylesheet">-->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <title>WELMET</title>
+</head>
+<!--Body Start of the landing page-->
+<body id="body" style="background-color: coral">
+<style>
+    /*when on small size*/
+    .back h1{
+        font-family: "French Script MT";
+        color: goldenrod;
+        font-size: 200px;
+    }
+    /*when on big size*/
+    @media (min-width: 768px) {
+
+        .back h1{
+            font-family: "French Script MT";
+            color: goldenrod;
+            font-size: 500px;
+        }
+    }
+    .card{
+        border-radius: 50px;
+        /*background-color: #4cae4c;*/
+        background: rgba(255,150,0,0.2);
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        border: 1px solid #6a1a21;
+    }
+    .form-outline{
+        background-color: lightyellow;
+        border-radius: 20px;
+        border: 3px solid black;
+        height: 15%;
+    }
+    footer{
+        background: rgba(255,150,0,0.2);
+    }
+    .back{
+        position: fixed;
+    }
+    #b{
+        background-color: #6a1a21;
+        color: lightyellow;
+        border-radius: 10px;
+    }
+    #b:hover{
+        background-color: orangered;
+        color: goldenrod;
+    }
+    #hoversake{
+        color: blue;
+        text-decoration: none;
+    }
+    #hoversake:hover{
+        color: yellow;
+    }
+</style>
+
+<div class="back"><h1>Welmet</h1></div>
+
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10" style="margin-top: -20px; ">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-3 col-lg-4 d-none d-md-block">
+                            <!--Logo-->
+                            <img src="../images/cup.jpg" width="325px" height="325px" alt="" class="img-fluid" style="border-radius: 100px; margin-top: 5%; float: right; margin-left: 20%; border: 3px solid #6a1a21">
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5" style="border: none; color: #6a1a21">
+
+                                <!--Login Form-->
+                                <form method="post" action="../index.php">
+
+
+                                    <div class="flex-b align-items-center mb-3 pb-1">
+                                        <label class="h1 fw-bold mb-0" style="margin-top: 10px">Welmet</label>
+                                    </div>
+<!--                                    <label class="h1 fw-bold mb-0">Welmet</label>-->
+                                    <h5 class="fw-normal mb-3 pb-2" style="letter-spacing: 1px;">Enter USERNAME and PASSWORD</h5>
+                                    <h5 class="fw-normal mb-3 pb-2" style="letter-spacing: 1px;">Note! CAPS Lock is checked</h5>
+
+                                    <!--Username Input-->
+                                    <div class="form-outline mb-4">
+                                        <input id="in" style="border-radius: 20px; background-color: lightyellow; color: #6a1a21; margin:0 auto;  display: flex; width: 100%; height: 100%; border: none"  type="text"  name="username"  placeholder="Username" value="<?php if(isset($_POST['username'])){echo $_POST['username'];}?>" required>
+
+                                    </div>
+
+                                    <!--Password Input-->
+                                    <div class="form-outline mb-4">
+                                        <input style="border-radius: 20px; background-color: lightyellow; color: #6a1a21; margin:0 auto;  display: flex; width: 100%; height: 100%; border: none" type="password" name="password"  placeholder="Password" value="<?php if(isset($_POST['password'])){echo $_POST['password'];}?>" required>
+
+                                    </div>
+
+                                    <!--Error message for incorrect credentials-->
+                                    <?php
+                                    if(isset($userDataset->_errorMessage)){
+                                        echo "<label style=' color:#ff0000; '>" .$userDataset->_errorMessage . "</label>";
+                                    }
+                                    ?>
+
+                                    <!--Submit Login Details Button-->
+                                    <div class="pt-1 mb-4" >
+                                        <input id="b" class="btn btn-light btn-lg btn-outline-secondary" name="loginBtn" type="submit" value="Login">
+                                    </div>
+
+                                    <h5 class="fw-normal mb-3 pb-2" style="letter-spacing: 1px;">No Account? <a id="hoversake" href="../signup.php">Signup here</a></h5>
+<!--                                    <h3 style="font-family: 'Agency FB'; font-size: 50px; color: white">No account!!! No worries <br><a href="../signup.php">Sign up here</a></h3>-->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+        <div class="container-footer sticky-lg-top text-white text-center" id="footer">
+            <div class="row border p-3">
+                <div class="col-12" style="color: #6a1a21"><p>Best Network! <i style="font-size: 24px; color: lightyellow" class='far fa-grin-squint-tears'></i><br> You never know might come in handy <i style="font-size: 24px; color: lightyellow" class='far fa-grin-beam'></i></p><br>
+                </div>
+            </div>
+        </div>
+</footer>
+</body>
+</html>

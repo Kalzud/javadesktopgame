@@ -1,0 +1,340 @@
+<html lang="en" dir="itr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" href="./css/my-style.css">-->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+
+    <title>WELMET</title>
+
+</head>
+<body style="background-color: coral">
+<style>
+    .navbar{
+       background-color: coral;
+    }
+    /*when on small size*/
+    .back h1{
+        font-family: "French Script MT";
+        color: goldenrod;
+        font-size: 200px;
+    }
+    /*when on big size*/
+    @media (min-width: 768px) {
+
+        .back h1{
+            font-family: "French Script MT";
+            color: goldenrod;
+            font-size: 500px;
+        }
+    }
+    .back{
+        position: fixed;
+    }
+    .form-label{
+        color: #6a1a21;
+        font-size: x-large;
+    }
+    .form-help{
+        color: #6a1a21;
+    }
+    #hoversake{
+        color: blue;
+        text-decoration: none;
+        text-align: left;
+        border: 1px solid #6a1a21;
+        background-color: rgba(255,150,0,0.2);
+    }
+    #hoversake:hover{
+        color: lightyellow;
+        box-shadow: 0 0 20px lightyellow;
+        border: none;
+    }
+</style>
+<nav class="navbar navbar-expand-sm  sticky-top navbar">
+    <!--Logo-->
+        <button class="backPrevious" style="background-color: coral; border: coral" onclick="history.back()"><i class="fas fa-arrow-left" style=" font-size: 50px; color: lightyellow"></i></button>
+    <!--    Toggler-->
+    <button class="navbar-toggler"  data-toggle="collapse" data-target="#collapsibleNavBar">
+        <span class="navbar-toggler-icon primary">
+            <?php if($view->pageTitle == "Search") {?>
+                <i class="fa fa-fw fa-search"></i>
+            <?php }else {?>
+                <i class="fa fa-bars"></i>
+            <?php }?>
+        </span>
+    </button>
+    <!--Navbar Links-->
+    <div class="collapse navbar-collapse text-center " id="collapsibleNavbar">
+        <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <h5 class="fw-normal mb-3 pb-2" style="letter-spacing: 1px; color: lightyellow; font-size: x-large">You Already have an account? No worries <a href="../index.php"><button id="hoversake" type="button" name="back" class="btn btn-lg" >Login Here</button></a></h5>
+                </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+<div class="back"><h1>Welmet</h1></div>
+
+    <div class="container py-5 h-100" >
+        <div class="row d-flex justify-content-center align-items-center h-100" >
+            <div class="col col-xl-6">
+                <div class="card" style="border-radius: 50px; background-color: rgba(255,150,0,0.2); border: 1px solid #6a1a21">
+                    <div class="col-md-6 col-lg-12">
+                        <!--Candidate Register Form-->
+                        <form method="post" action="../signup.php" enctype="multipart/form-data">
+                            <div class="card-body p-4 p-lg-5 text-black" id="addForm" >
+                                <!-- Help notify about error-->
+                               <h5> <?php
+                                   //$view = new stdClass();
+                                   //if(isset($view->_usernameError) or   ($view->_pwdMismatch) or ($view->_emailMismatch) )
+                                   if(isset($view->_usernameError)){
+                                    echo "<label style=' color:#ff0000; '>OOPs... Sorry check! Username or Email already taken</label>";
+                                      }
+                                   if(isset($view->_pwdMismatch)){
+                                       echo "<label style=' color:#ff0000; '>OOPs... Sorry Password doesn't match</label>";
+                                   }
+                                   if(isset($view->_emailMismatch)){
+                                       echo "<label style=' color:#ff0000; '>OOPs... Sorry Email doesn't match</label>";
+                                   }
+                                ?></h5>
+                                <!-- Candidate form title -->
+                                <span class="h1 fw-bold mb-0" style="margin-bottom: 10px; color: #6a1a21">Signing you up.....</span>
+
+                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: #6a1a21">Just a few steps</h5>
+
+                                <!--Full Name Input-->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label fw-bold" for="form2Example17">Full name*</label>
+                                    <input type="text" minlength="5" maxlength="30" id="form2Example17" required class="form-control form-control-lg" placeholder="Include your Full Name" name="realname" value="<?php if(isset($_POST['realname'])){echo $_POST['realname'];} ?>"/>
+
+                                </div>
+
+                                <!--Email Input-->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label fw-bold" for="form2Example17">Email*</label>
+                                    <input type="email" minlength="7" maxlength="40" id="form2Example17" required class="form-control form-control-lg" placeholder="E.g. JohnSmith@gmail.com" name="email" value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>"/>
+
+                                </div>
+
+                                <!-- Confirm Email Input-->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label fw-bold" for="form2Example17">Confirm Email*</label>
+                                    <input type="email" id="form2Example17" required class="form-control form-control-lg" placeholder="Please confirm email" name="confirmEmail" value="<?php if(isset($_POST['confirmEmail'])){echo $_POST['confirmEmail'];} ?>"/>
+                                    <small>
+                                        <!--Error message for incorrect Emails-->
+                                        <?php
+                                        if(isset($view->_emailMismatch)){
+                                            echo "<label style=' color:#ff0000; '>" .$view->_emailMismatch . "</label>";
+                                        }
+                                        ?>
+                                    </small>
+                                    <small>
+                                        <small>
+                                            <!--Error message for used username-->
+                                            <?php
+                                            if(isset($view->_usernameError)){
+                                                echo "<label style=' color:#ff0000; '>" .$view->_usernameError . "</label>";
+                                            }
+                                            ?>
+                                        </small>
+                                    </small>
+                                </div>
+
+                                <!-- User Name -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label fw-bold" for="form2Example17">Username*</label>
+                                    <input type="text" minlength="4" maxlength="15" id="form2Example17"  required class="form-control form-control-lg" placeholder="Something catchy" name="username" value="<?php if(isset($_POST['username'])){echo $_POST['username'];} ?>"/>
+                                    <small>
+                                        <!--Error message for used username-->
+                                        <?php
+                                        if(isset($view->_usernameError)){
+                                            echo "<label style=' color:#ff0000; '>" .$view->_usernameError . "</label>";
+                                        }
+                                        ?>
+                                    </small>
+                                </div>
+
+                                <!-- Password-->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label fw-bold" for="form2Example17">Password*</label>
+                                    <input type="password" id="form2Example17" required class="form-control form-control-lg" placeholder="Make it a strong one" name="password" value="<?php if(isset($_POST['password'])){echo $_POST['password'];} ?>"/>
+
+                                </div>
+
+                                <!-- Comfirm Password-->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label fw-bold" for="form2Example17"> Confirm Password*</label>
+                                    <input type="password" id="form2Example17" required class="form-control form-control-lg" placeholder="Confirm password please" name="confirmPassword" value="<?php if(isset($_POST['confirmPassword'])){echo $_POST['confirmPassword'];} ?>"/>
+                                    <small>
+                                        <!--Error message for incorrect password-->
+                                        <?php
+                                        if(isset($view->_pwdMismatch)){
+                                            echo "<label style=' color:#ff0000; '>" .$view->_pwdMismatch . "</label>";
+                                        }
+                                        ?>
+                                    </small>
+                                </div>
+
+                                <!--Profile image-->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label fw-bold" for="form2Example17">Profile Image</label>
+                                    <input type="file"  placeholder="It's optional but you could do it now" name="file"  value="<?php if(isset($_POST['file'])){echo $_POST['file'];} ?>"/>
+                                </div>
+
+                                <!-- Registration button -->
+                                <div>
+                                    <button type="submit" name="signupbtn" class="btn  btn-danger btn-lg" value="SIGNUP">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<?php require('template/footer.phtml') ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---->
+<!--<!DOCTYPE html>-->
+<!--<!--<html lang="en">-->-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <meta name="description" content="">-->
+<!--    <meta name="author" content="">-->
+<!--    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet">-->
+<!---->
+<!---->
+<!---->
+<!--    <!-- Bootstrap core CSS -->-->
+<!--    <link href="css/bootstrap.css" rel="stylesheet">-->
+<!--    <!-- Bootstrap theme -->-->
+<!--    <link href="css/bootstrap-theme.css" rel="stylesheet">-->
+<!--    <link href="css/my-style.css" rel="stylesheet">-->
+<!---->
+<!--    <title>V Gathering - --><?php //echo $view->pageTitle; ?><!--</title>-->
+<!--</head>-->
+<!--<div class="header">-->
+<!--    <div class="logo_container">-->
+<!--        <h1><span>V Gathering - --><?php //echo $view->pageTitle?><!--</span></h1>-->
+<!--    </div>-->
+<!--    <ul class="navigation">-->
+<!--        <li><a href="../index.php">LOGIN</a></li>-->
+<!--        <li><a href="signup.php">SIGNUP</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+<!--<h3>Please Sign up</h3>-->
+<!--<hr/>-->
+<!--<div class="row align-items-center" id="signup-body">-->
+<!---->
+<!--    <div class="col-sm-2 col-md-3"></div>-->
+<!--    <div class="col-sm-8 col-md-6">-->
+<!--        <h1 class="mb-5 text-center">SIGN UP</h1>-->
+<!--        <form action="signup.php" method="post" class="text-center">-->
+<!--            <div class="form-group">-->
+<!--                <label for="username">User Name*</label>-->
+<!--                <input type="text" class="form-control" name="username" placeholder="e.g Dan" value="--><?php //if(isset($_POST['username'])){echo $_POST['username'];} ?><!--" required>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="realname">Full Name*</label>-->
+<!--                <input type="text" class="form-control" name="realname" placeholder="e.g Jack" value="--><?php //if(isset($_POST['realname'])){echo $_POST['realname'];} ?><!--" required>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="email">Email Address*</label>-->
+<!--                <input type="email" class="form-control" name="email" placeholder="e.g malik@gmail.com" value="--><?php //if(isset($_POST['email'])){echo $_POST['email'];}?><!--" required>-->
+<!--                <p><small class="text-danger">--><?php //if(isset($view->emailMismatch)){echo $view->emailMismatch;}?><!--</small></p>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="password">Password*</label>-->
+<!--                <input type="password" class="form-control" name="password" placeholder="******" required>-->
+<!--                <p><small class="text-danger">--><?php //if(isset($view->passwordMismatch)){echo $view->passwordMismatch;}?><!--</small></p>-->
+<!--            </div>-->
+<!--            <div class="form-group" method="post">-->
+<!--                <input type="submit" name="signupbtn" class="btn btn-success form-control" value="SIGNUP">-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <div class="col-sm-2 col-md-3"></div>-->
+<!--</div>-->
+<?php //require('template/footer.phtml') ?>
+

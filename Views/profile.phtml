@@ -1,0 +1,152 @@
+<?php require_once ("Views/template/header.phtml"); ?>
+    <style>
+        .card{
+            background-color: rgba(255,150,0,0.2);
+            border-radius: 30px;
+            border: 0px;
+            box-shadow: 0 0 40px coral;
+            width: 50rem;
+        }
+        .card-body{
+            background-color: rgba(255,150,0,0.2);
+            border-radius: 0px;
+            border: 0px;
+            box-shadow: 0 0 40px coral;
+        }
+    </style>
+
+    <!--Listing of all users-->
+    <div class="container">
+        <div class="row  align-items-start  ">
+
+            <div class="col col-md-8 pt-2 px-2 my-5" >
+                <div class="card text-center ">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-8 col-lg-4">
+                            <h5 class="card-title img-rounded text-center" style="align-items: end;justify-content: left; display: flex"><img src="<?php if($view->otherUsers->getProfileImage() != null){
+                                    echo $view->otherUsers->getProfileImage();
+                                }else{
+                                    echo  '../images/blank.png';
+                                }
+                                ?>" alt="" height="150" width="150" style="border-radius: 100px; border: 3px solid #6a1a21"></h5>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-8">
+                            <!--                            <div class="card-body">-->
+                            <div class="page-title" style="color: #6a1a21; font-family: 'Bookman Old Style'; align-items: end;justify-content: left; display: flex"><h1 style=""><?php echo ''.$view->otherUsers->getRealName().''; ?> </h1></div>
+                            <div class="page-title" style="color: #6a1a21; font-family: 'Bookman Old Style'; align-items: end;justify-content: left; display: flex; margin-top: 30px">
+                                <button><a href="../profile.php?username=<?php echo $view->otherUsers->getUserName(); ?>">Message</a></button>
+                                <button style="margin-left: 20px"><a href="/request.php?user_id=<?php echo $view->otherUsers->getUserID(); ?>">Request</a></button></div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-8 col-lg-8 scrollsec" style="max-height: 300px; overflow-y: scroll">
+                            <div class="card-body">
+                                <div class="page-title" style="color: #6a1a21; font-family: 'Bookman Old Style'; align-items: end;justify-content: left; display: flex"> <h2>Bio</h2></div>
+                                <div class="page-title" style="color: #6a1a21; font-family: 'Bookman Old Style'; align-items: center;justify-content: center; display: flex">   <h5><?php echo $view->otherUsers->getBio(); ?>
+                                        </h5></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-4">
+                            <div class="card-body">
+                                <h1 style="margin-top: 30px; color: #6a1a21">Total likes</h1>
+                                <h1 style="color: #6a1a21"><?php echo ''.$view->totLikes.'<i class="fas fa-heart" style="color: red"></i>' ?></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card-body">
+                                <div class="page-title" style="color: #6a1a21; font-family: 'Bookman Old Style'; align-items: center;justify-content: center; display: flex; margin-top: 30px"><h1><?php echo ''.$view->otherUsers->getUserName().' Pictures'; ?> </h1></div>
+                                <div class="row">
+                                    <?php foreach ($view->othersPicUploads as $image) : ?>
+                                    <?php if ($image->getTextPostID() == null) : ?>
+                                        <div class="col-sm-4 col-md-4 col-lg-4"  style="border: 1px solid #6a1a21; border-radius: 30px;  background: rgba(255,150,0,0.2);">
+
+                                            <h5 class="card-title img-rounded text-center"><img src="<?php echo $image->getImgPost(); ?>" alt="" height="200" width="200" style="border-radius: 50px; border: 1px solid #6a1a21; box-shadow: 0 0 20px #6a1a21"></h5>
+                                            <p style="max-height: 50px; overflow-y: scroll; overflow-x: hidden">
+                                                <?php echo $image->getImgTag(); ?>
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                    <form method="get" action="../profile.php">
+                                                        <input type="text" name="id" value="<?php echo $view->otherUsers->getUserID(); ?>" hidden>
+                                                        <input type="text" name="imgpath" value="<?php echo $image->getImgPost(); ?>" hidden>
+                                                        <button type="submit" name="like"><i class="fas fa-hand-holding-heart" style="color:red"></i>like</button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                    <p>
+                                                        <?php
+                                                        $likesDataset = new LikesDataset();
+                                                        $imgPath = $image->getImgPost();
+                                                        $owner = $image->getUserID();
+                                                        $view->img = $likesDataset->imgLikes($owner, $imgPath);
+                                                        $view->imgLikes = count($view->img);
+                                                        echo $view->imgLikes;
+                                                        ?> Likes<i class="fas fa-heart" style="color: red"></i>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                     <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php require_once ("Views/template/footer.phtml"); ?>

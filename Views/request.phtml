@@ -1,0 +1,201 @@
+<?php require('template/header.phtml') ?>
+<script src="../js/LiveRequest.js" ></script>
+<style>
+    .card{
+        background: rgba(255,150,0,0.2);
+    }
+    .card-body{
+        background: rgba(255,150,0,0.2);
+    }
+    .img-rounded img{
+        border-radius: 50px;
+        border: 2px solid #6a1a21;
+    }
+    .img-rounded{
+        align-items: end;
+        justify-content: left;
+        display: flex;
+    //box-shadow:  0 0 50px red;
+    }
+    .remove:hover{
+       background-color: red;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <!--Listing of all requests-->
+        <div class="container" style="background: linear-gradient(transparent, coral);">
+            <form id="requestSearch" method="post" class="text-center" style="size: 100px; display: inline-flex">
+                <h3 style="color: #6a1a21; font-family: 'French Script MT'">Search Request</h3>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="search" placeholder="Search" value="<?php if(isset($_POST['search'])){echo $_POST['search'];}?>">
+                </div>
+                <div class="form-group" style="margin-right: 20px">
+                    <span><button name="mini-search" class="btn btn-light btn-outline-secondary mini-search" type="submit"><i class="fa fa-fw fa-search" style="font-size: 30px"></i></button></span>
+                    <!--            <span color="red"><input class="btn btn-outline-success form-control" name="searchBtn" type="submit" value="Search"></span>-->
+                </div>
+            </form>
+            <h3 style="color: #6a1a21; font-family: 'French Script MT'">Requested You</h3>
+            <div class="row  align-items-start" style="max-height: 500px; overflow-y: scroll" id="requests">
+                <!--            for each loop to show all users-->
+<!--                --><?php //if($view->searchDataset != null) { ?>
+<!--                    --><?php //foreach ($view->searchDataset as $user) : ?>
+<!--                        <div class="col col-md-12 pt-2 px-2 my-5">-->
+<!--                            <div class="card text-center " style="width: 24rem;">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-sm-4 col-md-4 col-lg-4">-->
+<!--                                            <h5 class="card-title img-rounded text-center"><img src="--><?php //if($user->getProfileImage() != null){
+//                                                    echo $user->getProfileImage();
+//                                                }else{
+//                                                    echo  '../images/blank.png';
+//                                                }
+//                                                ?><!--" alt="" height="90" width="90"></h5>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-sm-8 col-md-8 col-lg-8" style="align-items: end; justify-content: left; display: flex;">-->
+<!--                                            <h3 style="color: #6a1a21;margin-bottom: 60px">--><?php //echo $user->getUserName(); ?><!--</h3>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-sm-4 col-md-4 col-lg-4" style="align-items: end; justify-content: left; display: flex;">-->
+<!--                                            <button><a href="../profile.php?id=--><?php //echo $user->getUserID(); ?><!--">Profile</a></button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-sm-4 col-md-4 col-lg-4">-->
+<!--                                            <button><a href="../request.php?acc_user_id=--><?php //echo $user->getUserID(); ?><!--">Accept</a></button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-sm-4 col-md-4 col-lg-4">-->
+<!--                                            <button class="remove"><a href="../request.php?del_user_id=--><?php //echo $user->getUserID(); ?><!--">Remove</a></button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    --><?php //endforeach; ?>
+<!--                --><?php //} else{ ?>
+<!--                    --><?php //foreach ($view->requestDataset as $user) : ?>
+<!--                        <div class="col col-md-12 pt-2 px-2 my-5">-->
+<!--                            <div class="card text-center " style="width: 24rem;">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-sm-4 col-md-4 col-lg-4">-->
+<!--                                            <h5 class="card-title img-rounded text-center"><img src="--><?php //if($user->getProfileImage() != null){
+//                                                    echo $user->getProfileImage();
+//                                                }else{
+//                                                    echo  '../images/blank.png';
+//                                                }
+//                                                ?><!--" alt="" height="90" width="90"></h5>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-sm-8 col-md-8 col-lg-8" style="align-items: end; justify-content: left; display: flex;">-->
+<!--                                            <h3 style="color: #6a1a21;margin-bottom: 60px">--><?php //echo $user->getUserName(); ?><!--</h3>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-sm-4 col-md-4 col-lg-4" style="align-items: end; justify-content: left; display: flex;">-->
+<!--                                            <button><a href="../profile.php?id=--><?php //echo $user->getUserID(); ?><!--">Profile</a></button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-sm-4 col-md-4 col-lg-4">-->
+<!--                                            <button><a href="../request.php?acc_user_id=--><?php //echo $user->getUserID(); ?><!--">Accept</a></button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-sm-4 col-md-4 col-lg-4">-->
+<!--                                            <button class="remove"><a href="../request.php?del_user_id=--><?php //echo $user->getUserID(); ?><!--">Remove</a></button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    --><?php //endforeach; ?>
+<!--                --><?php //} ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1 col-md-1 col-lg-1">
+
+
+
+
+
+
+
+    </div>
+    <div class="col-sm-5 col-md-5 col-lg-5">
+        <!--Listing of all Pendings-->
+        <div class="container" style="background: linear-gradient(transparent, coral);">
+            <form id="requestSearch" method="post" class="text-center" style="size: 100px; display: inline-flex">
+                <h3 style="color: #6a1a21; font-family: 'French Script MT'">Search Pends...</h3>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="search" placeholder="Search" value="<?php if(isset($_POST['search'])){echo $_POST['search'];}?>">
+                </div>
+                <div class="form-group" style="margin-right: 20px">
+                    <span><button name="pend-search" class="btn btn-light btn-outline-secondary mini-search" type="submit"><i class="fa fa-fw fa-search" style="font-size: 30px"></i></button></span>
+                    <!--            <span color="red"><input class="btn btn-outline-success form-control" name="searchBtn" type="submit" value="Search"></span>-->
+                </div>
+            </form>
+            <h3 style="color: #6a1a21; font-family: 'French Script MT'">Yet too accept you....</h3>
+            <div class="row  align-items-start" style="max-height: 500px; overflow-y: scroll">
+                <!--            for each loop to show all users-->
+                <?php if($view->searchPend != null) { ?>
+                    <?php foreach ($view->searchPend as $user) : ?>
+                        <div class="col col-md-12 pt-2 px-2 my-5">
+                            <div class="card text-center " style="width: 24rem;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="card-title img-rounded text-center"><img src="<?php if($user->getProfileImage() != null){
+                                                    echo $user->getProfileImage();
+                                                }else{
+                                                    echo  '../images/blank.png';
+                                                }
+                                                ?>" alt="" height="90" width="90"></h5>
+                                        </div>
+                                        <div class="col-sm-8 col-md-8 col-lg-8" style="align-items: end; justify-content: left; display: flex;">
+                                            <h3 style="color: #6a1a21;margin-bottom: 60px"><?php echo $user->getUserName(); ?></h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-4 col-lg-4" style="align-items: end; justify-content: left; display: flex;">
+                                            <button><a href="../profile.php?id=<?php echo $user->getUserID(); ?>">Profile</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php } else{ ?>
+                    <?php foreach ($view->pendingDataset as $user) : ?>
+                        <div class="col col-md-12 pt-2 px-2 my-5">
+                            <div class="card text-center " style="width: 24rem;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-4 col-lg-4">
+                                            <h5 class="card-title img-rounded text-center"><img src="<?php if($user->getProfileImage() != null){
+                                                    echo $user->getProfileImage();
+                                                }else{
+                                                    echo  '../images/blank.png';
+                                                }
+                                                ?>" alt="" height="90" width="90"></h5>
+                                        </div>
+                                        <div class="col-sm-8 col-md-8 col-lg-8" style="align-items: end; justify-content: left; display: flex;">
+                                            <h3 style="color: #6a1a21;margin-bottom: 60px"><?php echo $user->getUserName(); ?></h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-4 col-lg-4" style="align-items: end; justify-content: left; display: flex;">
+                                            <button><a href="../profile.php?id=<?php echo $user->getUserID(); ?>">Profile</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<?php require('template/footer.phtml') ?>

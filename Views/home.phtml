@@ -1,0 +1,372 @@
+<?php require('template/header.phtml') ?>
+<style>
+    .img-rounded img{
+        border-radius: 50px;
+        border: 2px solid #6a1a21;
+    }
+    .img-rounded{
+        align-items: end;
+        justify-content: left;
+        display: flex;
+        //box-shadow:  0 0 50px red;
+    }
+    .card{
+        background: rgba(255,150,0,0.2);
+    }
+    .card-body{
+        background: rgba(255,150,0,0.2);
+    }
+    @media screen and (max-width: 700px){
+        .img-rounded{
+            width: 70%;
+            /*margin-top: 25%;*/
+            margin-left: -15%;
+        }
+    }
+    .scrollsec::-webkit-scrollbar-track{
+        background: linear-gradient(transparent, coral);
+        border-radius: 50px;
+    }
+
+</style>
+<!--Background writing-->
+<div class="back"><h1 style="color: goldenrod">Welmet</h1></div>
+<!--spacing to show background writing-->
+<div class="space"></div>
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <!--bigger for slides-->
+        <div id="flip" class="find">
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+                <h1 style="color: #6a1a21; font-family: 'French Script MT'; justify-content: center; align-items: center; display: flex; font-size: 50px; margin-bottom: -110px">Explore</h1>
+                <!-- Full-width slides of users -->
+                <!--            for each loop for users in slides-->
+                <?php foreach ($view->Pics as $image) : ?>
+                    <?php if($image->getTextPostID() == null) :?>
+                    <div class="mySlides">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 pt-2 px-2 my-5"  style="border: 1px solid #6a1a21; border-radius: 30px;  background: rgba(255,150,0,0.2);">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-7 col-lg-7 pt-2 px-2 my-5">
+                                                <div class="row">
+                                                    <div class="col-sm-8 col-md-8 col-lg-8">
+                                                        <h5 class="img-rounded "><img src="<?php echo $image->getImgPost(); ?>" alt="" height="400" width="400" style="border-radius: 50px; border: 1px solid #6a1a21; box-shadow: 0 0 20px #6a1a21; margin-left: 10px"></h5>
+                                                        <div class="col-sm-9 col-md-9 col-lg-9 pt-1 px-5  scrollsec" style="min-width: 300px; max-height: 150px; overflow-y: scroll; overflow-x: hidden; background: rgba(255,150,0,0.2); border-radius: 30px;">
+                                                            <div class="card text-center " style="width: 100%; background: rgba(255,150,0,0.2); border: none">
+                                                                <h5 style="align-items: end;justify-content: left; display: flex; color: white; max-width: 210px; word-break: break-word">
+                                                                    <?php echo $image->getImgTag(); ?>
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8 col-md-4 col-lg-4">
+                                                        <div class="row">
+                                                            <p style="color: #6a1a21; font-size: large; margin-left: 40px">
+                                                                <?php
+                                                                $likesDataset = new LikesDataset();
+                                                                $view->imgPath = $image->getImgPost();
+                                                                $owner = $image->getUserID();
+                                                                $view->img = $likesDataset->imgLikes($owner, $view->imgPath);
+                                                                $view->imgLikes = count($view->img);
+                                                                echo $view->imgLikes; ?> Likes<i class="fas fa-heart" style="color: red"></i>
+                                                            </p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <button style="margin-left: 40px"><a href="../profile.php?id=<?php echo $image->getUserID(); ?>">Profile</a></button>
+                                                        </div>
+                                                        <div class="row">
+                                                                <form method="get" action="../home.php" style="margin-left: 40px; margin-top: 10px">
+                                                                    <input type="text" name="id" value="<?php echo $image->getUserID(); ?>" hidden>
+                                                                    <input type="text" name="imgpath" value="<?php echo $image->getImgPost(); ?>" hidden>
+                                                                    <button type="submit" name="like"><i class="fas fa-hand-holding-heart" style="color:red"></i>like</button>
+                                                                </form>
+                                                        </div>
+                                                        <div class="row">
+                                                                <button style="font-size: medium; margin-left: 40px"><a href="#comment">Comment</a></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-5 col-lg-5">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                        <?php
+                                                        $imagePostDataset = new ImagePostDataset();
+                                                        $imgowner = $image->getUserID();
+                                                        $img = $image->getImgPost();
+                                                        $view->comments = $imagePostDataset->fetchPostComments($imgowner, $img);
+                                                        $view->commentsthis = count($view->comments);
+                                                        $view->theComments = array_reverse($view->comments, false);
+                                                        ?>
+                                                        <div class="row" style="min-height:450px; max-height: 450px; overflow-y: scroll; overflow-x: hidden; background: linear-gradient(transparent, coral); margin-top: 10px">
+                                                            <!--the comments-->
+                                                            <?php foreach ($view->theComments as $comment) :?>
+                                                            <div class="row">
+                                                                <div class="col-sm-9 col-md-9 col-lg-9 pt-1 px-5  scrollsec" style="min-width: 300px; max-height: 150px; overflow-y: scroll; overflow-x: hidden; background-color: black; border-radius: 30px; margin-top: 40px">
+                                                                    <div class="card text-center " style="width: 100%; background-color: black; border: none">
+                                                                            <h5 style="align-items: end;justify-content: left; display: flex; color: white; max-width: 210px; word-break: break-word">
+                                                                                <?php echo $comment->getTextPost(); ?>
+                                                                            </h5>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                                                        <p style="color: lightyellow; margin-left: 20px">
+                                                                            <?php
+                                                                            $likesDataset = new LikesDataset();
+                                                                            $text = $comment->getTextPost();
+                                                                            //echo $text;
+                                                                            $owner = $comment->getUserID();
+                                                                            //echo $owner;
+                                                                            $view->img = $likesDataset->textLikes($owner, $text);
+                                                                            //var_dump($view->img);
+                                                                            $view->imgLikes = count($view->img);
+                                                                            echo $view->imgLikes;
+                                                                            ?> Likes<i class="fas fa-heart" style="color: red"></i>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                                                        <form method="get" action="../home.php">
+                                                                            <input type="text" name="id" value="<?php echo $comment->getUserID(); ?>" hidden>
+                                                                            <input type="text" name="text" value="<?php echo $comment->getTextPost(); ?>" hidden>
+                                                                            <button type="submit" name="likeText"><i class="fas fa-hand-holding-heart" style="color:red"></i>like</button>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                                                        <button><a href="../profile.php?id=<?php echo $comment->getTextPostID(); ?>">Profile</a></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <?php endforeach; ?>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" id="comment">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                        <form method="get" action="../home.php">
+                                                            <input type="text" name="id" value="<?php echo $image->getUserID(); ?>" hidden>
+                                                            <input type="text" name="imgpath" value="<?php echo $image->getImgPost(); ?>" hidden>
+                                                            <div class="form-outline mb-4">
+                                                                <label class="form-label" style="color: #6a1a21; font-family: 'French Script MT'; font-size: xxx-large; margin-left: -5px" for="form2Example17;">Comment</label>
+                                                                <textarea style="height: 30%" maxlength="550" type="text" id="form2Example17" class="form-control form-control-lg" name="text" required></textarea>
+                                                            </div>
+                                                            <div class="content">
+                                                                <button  type="submit" name="comment" class="btn editpop" style="display: block; margin-right: auto; margin-left:auto">Comment</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                    </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <!-- Next/prev buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+
+            <!--         Dots/bullets/indicators-->
+            <div class="dot-container">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--Listing of all users-->
+<div class="container">
+    <div class="row  align-items-start  ">
+        <!--            for each loop to show all users-->
+            <?php foreach ($for->user as $user) : ?>
+                <div class="col col-md-4 pt-2 px-2 my-5">
+                    <div class="card text-center " style="width: 24rem;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <h5 class="card-title img-rounded text-center"><img src="<?php if($user->getProfileImage() != null){
+                                            echo $user->getProfileImage();
+                                        }else{
+                                            echo  '../images/blank.png';
+                                        }
+                                        ?>" alt="" height="90" width="90"></h5>
+                                </div>
+                                <div class="col-sm-8 col-md-8 col-lg-8" style="align-items: end; justify-content: left; display: flex;">
+                                    <h3 style="color: #6a1a21;"><?php echo $user->getUserName(); ?></h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-lg-6" style="align-items: end; justify-content: left; display: flex;">
+                                <button><a href="../profile.php?id=<?php echo $user->getUserID(); ?>">Profile</a></button>
+                                </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                <button><a href="../request.php?user_id=<?php echo $user->getUserID(); ?>">Request</a></button>
+                                    </div>
+                            </div>
+                            <div class="row" style="max-height: 120px; overflow-y: scroll">
+                                <h3 style="color: #6a1a21; text-decoration: underline">Bio</h3>
+                                <p style="color: darkblue">
+                                    <?php echo $user->getBio(); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+    </div>
+</div>
+
+<!--script for movement on slides-->
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+var i;
+var slides = document.getElementsByClassName("mySlides");
+var dots = document.getElementsByClassName("dot");
+if (n > slides.length) {slideIndex = 1}
+if (n < 1) {slideIndex = slides.length}
+for (i = 0; i < slides.length; i++) {
+slides[i].style.display = "none";
+}
+for (i = 0; i < dots.length; i++) {
+dots[i].className = dots[i].className.replace(" active", "");
+}
+slides[slideIndex-1].style.display = "block";
+dots[slideIndex-1].className += " active";
+}
+</script>
+<?php require('template/footer.phtml') ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

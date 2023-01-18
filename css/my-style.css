@@ -1,0 +1,859 @@
+.navbar{
+    /*#8a6d3b   kinda brown but light*/
+    /*#6a1a21  ox red*/
+    background-color: coral;
+    /*min-width: 780px;*/
+}
+/*@media  {*/
+/*    */
+/*}*/
+.nav-item a{
+    color: #6a1a21;
+    font-size: x-large;
+    font-family: cursive;
+}
+.nav-item form input{
+    color: #6a1a21;
+    font-size: x-large;
+    font-family: cursive;
+}
+.nav-item form input:hover{
+    color: lightyellow;
+}
+.nav-item a:hover{
+    color: lightyellow;
+    box-shadow: 0 0 20px lightyellow;
+}
+.container-fluid{
+    background-color: lightyellow;
+}
+/*nav.navbar-default:hover{*/
+/*    color: orangered;*/
+/*    background-color: white;*/
+/*}*/
+/*.bar{*/
+/*    width: 35px;*/
+/*    height: 5px;*/
+/*    background-color: lightyellow;*/
+/*    margin: 6px 0;*/
+/*}*/
+.user{
+    color: lightyellow;
+    font-family: cursive;
+}
+button:focus{
+    outline: none;
+}
+.navbar-toggler{
+    background-color: coral;
+    border: none;
+    border-radius: 50px;
+}
+.navbar-toggler .fa{
+    color: #6a1a21;
+    font-size: 30px;
+}
+.navbar-toggler .fa:hover{
+    color: coral;
+}
+.navbar-toggler:hover{
+    background-color: #6a1a21;
+}
+
+/*.navbar-toggler-icon{*/
+/*    background-color: coral;*/
+/*    border: none;*/
+/*    border-radius: 0;*/
+/*}*/
+
+/*.scroll-bg{*/
+/*    width: 600px;*/
+/*    padding: 30px;*/
+/*}*/
+/*.container{*/
+/*    position: fixed;*/
+/*}*/
+
+.find{
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    /*opacity: 1;*/
+    /*position: fixed;*/
+
+}
+/* Slideshow container */
+.slideshow-container {
+    /*display: flex;*/
+    position: relative;
+    /*background: #f1f1f1f1;*/
+    margin: auto;
+    background-color: rgba(255,150,0,0.2);
+
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+.col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+/*when on small size*/
+.back h1{
+    font-family: "French Script MT";
+    color: #6a1a21;
+    font-size: 200px;
+}
+/*when on big size*/
+@media (min-width: 768px) {
+
+    .back h1{
+        font-family: "French Script MT";
+        color: #6a1a21;
+        font-size: 500px;
+    }
+}
+
+
+/* Slides */
+.mySlides {
+    display: none;
+    padding: 80px;
+    text-align: center;
+    /*transition: background-color 0.6s ease;*/
+    /*background-color: coral;*/
+    /*--bs-bg-opacity: 0.2;*/
+
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    margin-top: -30px;
+    padding: 16px;
+    color: coral;
+    font-weight: bold;
+    font-size: 50px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    position: absolute;
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+@media (max-width: 768px) {
+    /* Next & previous buttons */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 20%;
+        width: auto;
+        margin-top: -30px;
+        padding: 16px;
+        color: coral;
+        font-weight: bold;
+        font-size: 50px;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        position: absolute;
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: coral;
+    color: white;
+}
+
+/* The dot/bullet/indicator container */
+.dot-container {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255,150,0,0.2);
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+/* Add a background color to the active dot/circle */
+.active, .dot:hover {
+    background-color: orangered;
+}
+.back{
+    position: fixed;
+}
+.space{
+    height: 300px;
+    background-color: lightyellow;
+    margin: 6px 0;
+
+}
+@media (min-width: 768px) {
+
+    .space{
+        height: 500px;
+        background-color: lightyellow;
+        margin: 6px 0;
+
+    }
+}
+.card-text{
+    color: #6a1a21;
+}
+button:hover{
+    background: green;
+    border: 2px solid white;
+    border-radius: 20px;
+    box-shadow: 0 0 20px lawngreen;
+}
+button a:hover{
+    text-decoration: none;
+    color: lightyellow;
+}
+button{
+    background: lightblue;
+    border: 2px solid white;
+    border-radius: 20px;
+    box-shadow: 0 0 20px brown;
+/*rgba(0, 0, 0, 0.5)*/
+}
+button a{
+    width: 100%;
+    height: calc(100% + 5px);
+    margin-top: -20px;
+    color: #6a1a21;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+#logoutBtn{
+    margin-top: 50px;
+    height: 50px;
+    box-shadow: 0 0 40px red;
+    background-color: lightyellow;
+}
+#logoutBtn:hover{
+    background-color: darkred;
+    border-radius: 0px;
+    border: none;
+    box-shadow: 0 0 40px lightyellow;
+    color: lightyellow;
+}
+.card{
+    border: solid saddlebrown;
+    border-radius: 40px;
+    background-color:#6a1a21 ;
+    /*transition: background-color 0.6s ease;*/
+    /*transform-style: preserve-3d;*/
+}
+.card-body{
+    border: solid saddlebrown;
+    border-radius: 50px;
+    /*transition: background-color 0.6s ease;*/
+}
+
+.pro{
+    background-color: coral;
+    margin-top: 15px;
+    height: 50px;
+    border: none;
+    box-shadow: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+
+.pro:hover{
+    color: lightyellow;
+    box-shadow: 0 0 50px red;
+    border: none;
+    border-radius: 20px;
+    background-color: coral;
+}
+
+/*.pro h2 .fas:hover{*/
+/*    color: lightyellow;*/
+/*}*/
+
+.to-top{
+    background-color: coral;
+}
+.to-top:hover{
+    background-color: white;
+}
+.to-top a:hover{
+    color: #6a1a21;
+}
+.nav-link {
+    /*background-color: #555;*/
+    color: white;
+    text-decoration: none;
+    padding: 15px 26px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+}
+.nav-link .badge {
+    position: relative;
+    top: -10px;
+    /*right: -10px;*/
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
+.form-control{
+    /*position: absolute;*/
+    border-radius: 20px;
+    /*justify-content: left;*/
+    text-align: left;
+}
+span .btn{
+    border: none;
+    color: lightyellow;
+    background-color: orangered;
+    /*margin-right: 10px;*/
+    box-shadow: none;
+    border-radius: 20px;
+    /*margin-right: 136px;*/
+}
+span .btn:hover{
+    background-color: #449d44;
+}
+span .searchSearch{
+    color: #6a1a21;
+    background-color: coral;
+}
+span .searchSearch:hover{
+    background-color: coral;
+    box-shadow: lightyellow;
+}
+span .mini-search{
+    color: #6a1a21;
+    background-color: lightyellow;
+}
+span .mini-search:hover{
+    background-color: coral;
+    box-shadow: lightyellow;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: coral;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: coral;
+    color: lightyellow;
+}
+.dropbtn i{
+    color: #6a1a21;
+}
+.dropbtn i:hover, .dropbtn i:focus {
+    background-color: coral;
+    color: lightyellow;
+}
+
+/* The search field */
+#myInput {
+    box-sizing: border-box;
+    /*background-image: url('searchicon.png');*/
+    /*background-position: 14px 12px;*/
+    /*background-repeat: no-repeat;*/
+    font-size: 16px;
+    /*padding: 14px 20px 12px 45px;*/
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+/* The search field when it gets focus/clicked on */
+#myInput:focus {
+    outline: 3px solid #449d44;
+
+}
+.sb{
+    display: inline-flex;
+}
+
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    /*box-shadow: #6a1a21;*/
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /*background-color: #f6f6f6;*/
+    min-width: 230px;
+    border: 1px solid #6a1a21;
+    z-index: 1;
+    border-radius: 20px;
+    background: rgba(255,150,0,0.2);
+    /*box-shadow: #6a1a21;*/
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+.form-label{
+    margin-top: 20px;
+    font-size: 20px;
+    color: orangered;
+    /*#419641*/
+}
+footer{
+    background: rgba(255,150,0,0.2);
+}
+
+/*html{*/
+/*    scrollbar-width: normal;*/
+/*    scrollbar-color: white grey;*/
+/*}*/
+.row::-webkit-scrollbar{
+    width: 10px;
+}
+.row::-webkit-scrollbar-thumb{
+    background: linear-gradient(transparent, dimgrey);
+    border-radius: 50px;
+}
+.row::-webkit-scrollbar-track{
+    background-color: white;
+    border-radius: 50px;
+}
+.row::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent, coral);
+    border-radius: 50px;
+}
+.row::-webkit-scrollbar-track:hover{
+    background-color: grey;
+    border-radius: 50px;
+}
+.scrollsec::-webkit-scrollbar{
+    width: 10px;
+}
+.scrollsec::-webkit-scrollbar-thumb{
+    background: linear-gradient(transparent, dimgrey);
+    border-radius: 50px;
+}
+.scrollsec::-webkit-scrollbar-track{
+    background-color: white;
+    border-radius: 50px;
+}
+.scrollsec::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent, coral);
+    border-radius: 50px;
+}
+.scrollsec::-webkit-scrollbar-track:hover{
+    background-color: grey;
+    border-radius: 50px;
+}
+textarea::-webkit-scrollbar{
+    width: 10px;
+}
+textarea::-webkit-scrollbar-thumb{
+    background: linear-gradient(transparent, dimgrey);
+    border-radius: 50px;
+}
+textarea::-webkit-scrollbar-track{
+    background-color: white;
+    border-radius: 50px;
+}
+textarea::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent, coral);
+    border-radius: 50px;
+}
+textarea::-webkit-scrollbar-track:hover{
+    background-color: grey;
+    border-radius: 50px;
+}
+textarea::-webkit-scrollbar{
+    width: 10px;
+}
+textarea::-webkit-scrollbar-thumb{
+    background: linear-gradient(transparent, dimgrey);
+    border-radius: 50px;
+}
+textarea::-webkit-scrollbar-track{
+    background-color: white;
+    border-radius: 50px;
+}
+textarea::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent, coral);
+    border-radius: 50px;
+}
+textarea::-webkit-scrollbar-track:hover{
+    background-color: grey;
+    border-radius: 50px;
+}
+p::-webkit-scrollbar{
+    width: 10px;
+}
+p::-webkit-scrollbar-thumb{
+    background: linear-gradient(transparent, dimgrey);
+    border-radius: 50px;
+}
+p::-webkit-scrollbar-track{
+    background-color: white;
+    border-radius: 50px;
+}
+p::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent, coral);
+    border-radius: 50px;
+}
+p::-webkit-scrollbar-track:hover{
+    background-color: grey;
+    border-radius: 50px;
+}
+.box {
+    width: 40%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    padding: 35px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+}
+
+.button {
+    font-size: 2em;
+    padding: 10px;
+    color: green;
+    background: rgba(255,150,0,0.2);
+    border: 2px solid #06D85F;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    width: 100%;
+}
+.button:hover {
+    background: #06D85F;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,150,0,0.2);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin-top: 15%;
+    margin-left: 35%;
+    /*margin: 70px auto;*/
+    padding: 20px;
+    background: rgba(255,150,0,0.7);
+    border: 2px solid #6a1a21;
+    border-radius: 50px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+.popup .close:hover {
+    color: red;
+}
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+    .box{
+        width: 70%;
+    }
+    .popup{
+        width: 70%;
+        margin-top: 25%;
+        margin-left: 15%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**{*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    list-style: none;*/
+/*    text-decoration: none;*/
+/*    box-sizing: border-box;*/
+/*    !*background-color: darkslateblue;*!*/
+/*}*/
+/*header{*/
+/*    !*position: fixed;*!*/
+/*    overflow: hidden;*/
+/*}*/
+/*.header{*/
+/*    display: block;*/
+/*    min-height: 100px;*/
+/*    width: 100%;*/
+/*    background-color: green;*/
+/*    !*position: fixed;*!*/
+/*    z-index: 12;*/
+/*    border: 2px solid darkslateblue;*/
+/*    !*border-bottom-right-radius: 50%;*!*/
+/*    !*border-bottom-left-radius: 50%;*!*/
+/*}*/
+/*.header .straight{*/
+/*    !*display: flex;*!*/
+/*}*/
+/*.header .logo_container{*/
+/*    background-color: green;*/
+/*}*/
+/*.header .navigation{*/
+/*    display: inline-flex;*/
+/*    position: relative;*/
+/*    float: right;*/
+/*    background-color: green;*/
+/*    !*margin-left: 30px;*!*/
+/*    !*margin: 40px;*!*/
+/*}*/
+/*.top .row .name{*/
+/*    background-color: green;*/
+/*}*/
+/*.top .row .name .page-title{*/
+/*    position: center;*/
+/*    float: right;*/
+/*    background-color: green;*/
+/*}*/
+/*.header .navigation li{*/
+/*    background-color: green;*/
+/*}*/
+/*.header .navigation li button a{*/
+/*all-space-treatment: 30px;*/
+/*}*/
+/*!*.header .navigation li button.ho{*!*/
+/*!*    margin-right:60px;*!*/
+/*!*}*!*/
+/*!*.header .navigation li button.re{*!*/
+/*!*    margin-right: 30px;*!*/
+/*!*}*!*/
+/*!*.header .navigation li button.fr{*!*/
+/*!*    margin-right: 50px;*!*/
+/*!*}*!*/
+/*!*.header .navigation li button.lo{*!*/
+/*!*    margin-right: 0px;*!*/
+/*!*}*!*/
+/*.content{*/
+/*    background-color: darkslateblue;*/
+/*}*/
+/*body{*/
+/*    position: relative;*/
+/*}*/
+/*button{*/
+/*    width: 100%;*/
+/*    height: calc(100% + 5px);*/
+/*    !*margin: 30px;*!*/
+/*    margin-top: -20px;*/
+/*    border: none;*/
+/*    background: darkslateblue;*/
+/*    border-radius: 5px;*/
+/*    color: white;*/
+/*    font-size: 18px;*/
+/*    font-weight: 500;*/
+/*    letter-spacing: 1px;*/
+/*    text-transform: uppercase;*/
+/*    cursor: pointer;*/
+/*}*/
+/*button a{*/
+/*    text-decoration: none;*/
+/*    color: white;*/
+/*}*/

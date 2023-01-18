@@ -1,0 +1,370 @@
+<html lang="en">
+
+<!--head of website-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/my-style.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="../../js/WebRequest.js"></script>
+    <title>WELMET</title>
+</head>
+
+<!--javascript for search bar in other pages(not search page)-->
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+document.getElementById("myDropdown").classList.toggle("show");
+}
+function filterFunction() {
+var input, filter, ul, li, a, i;
+input = document.getElementById("myInput");
+filter = input.value.toUpperCase();
+div = document.getElementById("myDropdown");
+a = div.getElementsByTagName("a");
+for (i = 0; i < a.length; i++) {
+txtValue = a[i].textContent || a[i].innerText;
+if (txtValue.toUpperCase().indexOf(filter) > -1) {
+a[i].style.display = "";
+} else {
+a[i].style.display = "none";
+}
+}
+}
+</script>
+
+<!--beginning of body of website-->
+
+<body role="document">
+
+<!--navigation bar-->
+
+<nav class="navbar navbar-expand-sm  sticky-top navbar">
+
+    <!--Show userprofile pic as link to user profile (if not search)-->
+
+    <?php if($view->pageTitle != "Search") :?>
+    <a href="../../personalProfile.php">
+        <h5 class="pro" style="align-items: end;justify-content: left; display: flex"><img src="<?php if($view->user->getProfileImage() != null){
+                echo $view->user->getProfileImage();
+            }else{
+                echo  '../images/blank.png';
+            }
+            ?>" alt="Profile image" height="50" width="50" style="border-radius: 50px; border: 3px solid #6a1a21"></h5>
+    </a>
+    <?php endif ?>
+
+<!--    go back one page from search page -->
+
+    <?php if($view->pageTitle == "Search") :?>
+    <button class="backPrevious" style="background-color: coral; border: coral" onclick="history.back()"><i class="fas fa-arrow-left" style=" font-size: 50px; color: lightyellow"></i></button>
+    <?php endif ?>
+
+<!--    show name of user-->
+
+   <?php if($view->pageTitle != "Search") :?>
+        <div class="user">
+            <h2 style="color: #6a1a21"><?php if(isset($_SESSION['username'])){$name = htmlentities($_SESSION['username']);echo"$name";} ?></h2>
+        </div>
+    <?php endif ?>
+
+<!--    show search filter area-->
+
+    <?php if($view->pageTitle != "Search") :?>
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn"><i class="fa fa-fw fa-search" style=" font-size: 50px"></i></button>
+        <div id="myDropdown" class="dropdown-content">
+            <form method="post" action="../../search.php" class="text-center" >
+                <div class="form-group">
+                    <div class="dropdown mini-dropdown">
+                            <label class="form-label fw-bold">Filter Search....</label>
+                            <select name="filter" class="form-control" type="submit" required value="<?php if  (isset($_POST['filter'])) { echo $_POST['filter']; } ?>" >
+                                <option type="text" value="all" >All</option>
+                                <option type="text" value="name" >Name</option>
+                                <option type="text" value="username" >Username</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="search" placeholder="Search......" id="myInput" onkeyup="filterFunction()" value="<?php if(isset($_POST['search'])){echo $_POST['search'];}?>">
+                </div>
+                <div class="form-group" >
+                    <a href="#us"><span><button name="searchBtn" class="btn btn-light btn-outline-secondary" type="submit"><i class="fa fa-fw fa-search"></i>Search</button></span></a>
+                </div>
+            </form>
+        </div>&nbsp;
+    </div>
+    <?php endif ?>
+
+    <!--    Toggler in search page-->
+
+    <button class="navbar-toggler"  data-toggle="collapse" data-target="#collapsibleNavBar">
+        <span class="navbar-toggler-icon primary">
+            <?php if($view->pageTitle == "Search") {?>
+                <i class="fa fa-fw fa-search"></i>
+            <?php }else {?>
+            <i class="fa fa-bars"></i>
+            <?php }?>
+        </span>
+    </button>
+
+    <!--Navbar Links-->
+
+    <div class="collapse navbar-collapse text-center " id="collapsibleNavbar">
+        <ul class="navbar-nav ml-auto">
+            <?php if($view->pageTitle != "Search") :?>
+            <li class="nav-item">
+                <a class="nav-link"  href = "../../home.php"><span><i class="fas fa-home"></i>HOME</span ><!--<span class="badge">3</span>--></a>
+            </li>
+            <?php endif ?>
+            <?php if($view->pageTitle != "Search") :?>
+            <li class="nav-item">
+                <a class="nav-link"  href = "../../request.php"><span><i class="fa fa-fw fa-envelope"></i>Notifications</span ><span class="badge"><?php if($view->request > 0){echo $view->request;} ?></span></a>
+            </li>
+            <?php endif ?>
+            <?php if($view->pageTitle != "Search") :?>
+            <li class="nav-item">
+                <a class="nav-link"  href = "../../friend.php"><span><i class="fas fa-user-friends"></i>FRIENDS</span ><span class="badge"><?php if($view->cfriend > 0){echo $view->cfriend;} ?></span></a>
+            </li>
+            <?php endif ?>
+
+<!--            search area on search page-->
+
+            <?php if($view->pageTitle == "Search") :?>
+                <form method="post" class="text-center sb">
+                    <div class="form-group">
+                        <div class="dropdown mini-dropdown">
+                            <label class="form-label fw-bold" style="color: lightyellow">Filter Search....</label>
+                            <select name="filter" class="form-control" type="submit" required value="<?php if  (isset($_POST['filter'])) { echo $_POST['filter']; } ?>" >
+                                <option type="text" value="all" >All</option>
+                                <option type="text" value="name" >Name</option>
+                                <option type="text" value="username" >Username</option>
+                            </select>
+
+                        </div>
+                        <!--                    <input class="form-control" type="text" name="filter" placeholder="Filter....." id="myInput" onkeyup="filterFunction()" value="--><?php //if(isset($_POST['filter'])){echo $_POST['filter'];}?><!--">-->
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label fw-bold" style="color: lightyellow;">Search Term....</label>
+<!--                        <script src="../../js/MapFunction.js" ></script>-->
+                        <input  class="form-control" type="text" id="search" name="search" placeholder="Search" value="<?php if(isset($_POST['search'])){echo $_POST['search'];}?>" onkeyup="liveSearch(this.value)">
+                        <div id="search" class="dropdown-content">
+<!--                            <table>-->
+<!--                                <thead>-->
+<!--                                <tr><th>Names</th></tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                                --><?php //foreach ($view->user as $user) : ?>
+<!--                                    <tr>-->
+<!--                                        <td>--><?php //echo $user->getRealName(); ?><!--</td>-->
+<!--                                        <td><img src="--><?php //echo $user->getProfileImage(); ?><!--" alt="" height="90" width="90"></td>-->
+<!--                                    </tr>-->
+<!--                                --><?php //endforeach; ?>
+<!--                                </tbody>-->
+<!--                            </table>-->
+                        </div>
+<!--                        <div id="search"> </div>-->
+                    </div>
+                    <div class="form-group" style="margin-top: 55px">
+<!--                        <span>-->
+                            <button name="searchBtn" class="btn btn-light btn-outline-secondary searchSearch" type="submit"><i class="fa fa-fw fa-search" style="font-size: 30px"></i></button>
+<!--                        </span>-->
+<!--                        <span><input class="btn btn-outline-success form-control" name="searchBtn" type="submit" value="Search"><i class="fa fa-fw fa-search"></i></span>-->
+                    </div>
+                </form>
+            <?php endif ?>
+
+<!--            logout button -->
+
+            <?php if($view->pageTitle != "Search") :?>
+            <li class="nav-item">
+                <form method="post" action="../../index.php?redirect=<?php echo "http://". $_SERVER["HTTP_HOST"] . "/index.php"?>">
+                    <button id="logoutBtn" type="submit" name="logoutButton" class="btn my-2 my-sm-3" value="LOGOUT">LOGOUT<i class="fas fa-sign-out-alt" style="color: #6a1a21"></i></button>
+                </form>
+            </li>
+            <?php endif ?>
+        </ul>
+    </div>
+</nav>
+<div class = "container-fluid" id="page-body">
+    <?php if($view->pageTitle != "Profile Page") :?>
+    <div class="page-title" style="color: #6a1a21; font-family: 'Bookman Old Style';"> <h1><?php echo $view->pageTitle ?> </h1></div>
+    <?php endif ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

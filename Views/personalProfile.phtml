@@ -1,0 +1,601 @@
+<?php require_once ("Views/template/header.phtml"); ?>
+<style>
+    .card{
+        background-color: rgba(255,150,0,0.2);
+        border-radius: 0px;
+        border: 0px;
+        box-shadow: 0 0 40px coral;
+    }
+    .card-body{
+        border: none;
+    }
+    .writing{
+        color: #6a1a21;
+    }
+    #setlb{
+        float: left;
+        color: orangered;
+    }
+    #setlbp{
+        float: left;
+        color: orangered;
+    }
+    .dropdown-menu{
+        width: 100%;
+        background-color: rgba(255,150,0,0.8);
+    }
+    /*.dropup{*/
+    /*    align-items: center;*/
+    /*    justify-content: center;*/
+    /*    display: flex;*/
+    /*}*/
+    .edit{
+        align-items: center;
+        justify-content: center;
+       display: flex;
+    }
+    .edit:hover{
+        box-shadow: 0 0 20px lightyellow;
+        background-color: #4cae4c;
+        border-radius: 0px;
+        color: white;
+        border: 5px solid white;
+    }
+    .editpop{
+        box-shadow: 0 0 20px #6a1a21;
+        border: 3px solid #6a1a21;
+        color: #a94442;
+        background-color: rgba(255,150,0,0.8);
+    }
+    .editpop:hover{
+        box-shadow: 0 0 20px lightyellow;
+        background-color: #4cae4c;
+        border-radius: 0px;
+        color: white;
+    }
+    .editBioPic{
+        border-radius: 40px;
+        border: 1px solid white;
+        box-shadow: 0 0 20px  #6a1a21;
+        background: lightblue;
+        color: #6a1a21;
+    }
+    .editBioPic:hover{
+        box-shadow: 0 0 20px lightyellow;
+        background-color: #4cae4c;
+        border-radius: 0px;
+        color: white;
+        border: 5px solid white;
+    }
+    input[type=file]::file-selector-button {
+        border: 2px solid #6c5ce7;
+        padding: .2em .4em;
+        border-radius: .2em;
+        background-color: #a29bfe;
+        transition: 1s;
+    }
+
+    input[type=file]::file-selector-button:hover {
+        background-color: #81ecec;
+        border: 2px solid #00cec9;
+    }
+    #danger:hover{
+        box-shadow: 0 0 20px lightyellow;
+        background-color: red;
+        border-radius: 20px;
+        color: white;
+        border: 5px solid white;
+    }
+    #danger i:hover{
+        color: white;
+    }
+</style>
+
+<!--<div class="row">-->
+<!--    <div class="col-sm-3 col-md-6 col-lg-4" style="border: 4px solid yellow"><h1>Tester</h1>adipiscing elit. Aenean commodo ligula eget dolor.-->
+<!--        odio et ante tincidunt tempus. Donec vitae sapien ut libero-->
+<!--        venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget-->
+<!--        eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet-->
+<!--        nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum</div>-->
+<!--    <div class="col-sm-3 col-md-6 col-lg-8" style="border: 4px solid yellow"><h1>Tester</h1>adipiscing elit. Aenean commodo ligula eget dolor.-->
+<!--        odio et ante tincidunt tempus. Donec vitae sapien ut libero-->
+<!--        venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget-->
+<!--        eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet-->
+<!--        nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum</div>-->
+<!--</div>-->
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+        <div class="card text-center " style="width: 100%;">
+            <div class="card-body">
+                <div class="row" style="align-items: center;justify-content: center; display: flex">
+                    <h5 class="card-title img-rounded text-center"><img src="<?php if($view->user->getProfileImage() != null){
+                            echo $view->user->getProfileImage();
+                        }else{
+                            echo  '../images/blank.png';
+                        }
+                        ?>" alt="" height="150" width="150" style="border-radius: 100px; border: 3px solid #6a1a21">
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6" >
+                    <a class="btn editBioPic" href="#profilepic" style="">Upload</a>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6" >
+                    <a class="btn editBioPic" href="#info" style="">Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8 col-md-8 col-lg-8" >
+    <div style="display: inline-block">
+        <p class="card-text text-center writing" style="align-items: end;justify-content: left; display: flex; "><strong style="font-size: xxx-large;"><?php echo $view->user->getRealName(); ?></strong></p>
+        <p class="card-text text-center writing" style="font-size: xxx-large; align-items: end;justify-content: left; display: flex;"><?php echo $view->user->getUserName(); ?></p>
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8 col-md-6 col-lg-8 scrollsec" style="max-height: 300px; overflow-y: scroll; overflow-x: hidden">
+        <div class="card text-center " style="width: 100%;">
+            <div class="card-body" >
+                <h1 class="writing" style="font-size: xxx-large; align-items: end;justify-content: left; display: flex;">BIO</h1>
+                <a class="btn editBioPic" href="#bio" style="margin-right: 830px">Edit</a>
+                <h5 style="align-items: end;justify-content: left; display: flex; color: darkblue">
+                <?php echo $view->user->getBio(); ?>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-6 col-lg-4" >
+        <div class="card text-center " style="width: 100%;">
+            <div class="card-body" >
+                <h1 class="writing"><?php echo $view->totLikes ?> <i class="fas fa-heart" style="color: red"></i>Total Likes</h1>
+                <h1 class="writing"><?php echo ''.$view->cfriend.' Friends' ?></h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+        <div class="col-sm-8 col-md-8 col-lg-8" >
+            <div class="card text-center " style="width: 100%;">
+                <div class="card-body" >
+                    <h1 class="writing">Pictures</h1>
+                    <div class="dropup">
+                        <button type="button" class="btn btn-primary editBioPic" data-toggle="dropdown" style="font-size: x-large">
+                            POST
+                        </button>
+                        <div class="dropdown-menu" style="width: 20%">
+                            <a class="dropdown-item" href="#post">Pictures</a>
+                            <a class="dropdown-item" href="#textPost" >Text</a>
+                        </div>
+                    </div>
+                    <a class="btn editBioPic" href="#editpost" style="font-size: x-large">Edit Posts</a>
+                    <div class="row">
+                    <?php foreach ($view->yourPics as $image) : ?>
+                        <?php if($image->getTextPostID() == null) :?>
+                        <div class="col-sm-12 col-md-6 col-lg-4"  style="border: 1px solid #6a1a21; border-radius: 30px;  background: rgba(255,150,0,0.2); max-height: 30%">
+                            <h5 class="card-title img-rounded text-center"><img src="<?php echo $image->getImgPost(); ?>" alt="" height="200" width="200" style="border-radius: 50px; border: 1px solid #6a1a21; box-shadow: 0 0 20px #6a1a21"></h5>
+                            <p style="max-height: 50px; overflow-y: scroll; overflow-x: hidden">
+                                <?php echo $image->getImgTag(); ?>
+                            </p>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-lg-6" >
+                                    <p>
+                                        <?php
+                                        $likesDataset = new LikesDataset();
+                                        $view->imgPath = $image->getImgPost();
+                                        $owner = $image->getUserID();
+                                        $view->img = $likesDataset->imgLikes($owner, $view->imgPath);
+                                        $view->imgLikes = count($view->img);
+                                        echo $view->imgLikes;
+                                        ?> Likes<i class="fas fa-heart" style="color: red"></i>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6" >
+                                    <form method="get" action="../personalProfile.php">
+                                        <input type="text" name="id" value="<?php echo $image->getUserID(); ?>" hidden>
+                                        <input type="text" name="imgpath" value="<?php echo $image->getImgPost(); ?>" hidden>
+                                        <button type="submit" name="deletePost" id="danger"><i class="fa fa-warning" style="color:red"></i>Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif ?>
+                    <?php endforeach; ?>
+                    </div>
+<!--                    <div class="row">-->
+<!--                        --><?php //foreach ($view->yourPics as $image) : ?>
+<!--                        --><?php //if($image->getImgPost() == null) :?>
+<!--                                <div class="col-sm-12 col-md-4 col-lg-4"  style="border: 1px solid #6a1a21; border-radius: 30px;  background: #282828; max-height: 20%">-->
+<!--                                    <p style="max-height: 120px; overflow-y: scroll; overflow-x: hidden; margin-top: 20px; background-color: #282828; color: white; border-radius: 20px">-->
+<!--                                        --><?php //echo $image->getTextPost(); ?>
+<!--                                    </p>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-sm-12 col-md-6 col-lg-6">-->
+<!--                                            <p style="color: lightyellow">-->
+<!--                                                --><?php
+//                                                $likesDataset = new LikesDataset();
+//                                                $text = $image->getTextPost();
+//                                                $owner = $image->getUserID();
+//                                                $view->img = $likesDataset->textLikes($owner, $text);
+//                                                $view->imgLikes = count($view->img);
+//                                                echo $view->imgLikes;
+//                                                ?><!-- Likes<i class="fas fa-heart" style="color: red"></i>-->
+<!--                                            </p>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-sm-12 col-md-6 col-lg-6">-->
+<!--                                            <form method="get" action="../personalProfile.php">-->
+<!--                                                <input type="text" name="id" value="--><?php //echo $image->getUserID(); ?><!--" hidden>-->
+<!--                                                <input type="text" name="text" value="--><?php //echo $image->getTextPost(); ?><!--" hidden>-->
+<!--                                                <button type="submit" name="deleteTextPost" id="danger"><i class="fa fa-warning" style="color:red"></i>Delete</button>-->
+<!--                                            </form>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            --><?php //endif ?>
+<!--                        --><?php //endforeach; ?>
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4" >
+            <div class="card text-center " style="width: 100%;">
+                <div class="card-body" >
+                    <h1 class="writing" id="info">Information</h1>
+                    <div class="row">
+                        <label id="setlb">Full Name:</label>&nbsp;&nbsp;
+                        <p1 id="setlbp"><?php echo $view->user->getRealName(); ?></p1>
+                    </div>
+                    <div class="row">
+                        <label id="setlb">Username:</label>&nbsp;&nbsp;
+                        <p1 id="setlbp"><?php echo $view->user->getUserName(); ?></p1>
+                    </div>
+                    <div class="row">
+                        <label id="setlb">Email Address:</label>&nbsp;&nbsp;
+                        <p1 id="setlbp"><?php echo $view->user->getEmailAddress(); ?></p1>
+                    </div>
+
+
+
+
+                    <div class="dropup">
+                        <button type="button" class="btn btn-primary edit" data-toggle="dropdown">
+                            Edit
+                        </button>
+                        <div class="dropdown-menu">
+                            <span class="dropdown-item-text" style="text-decoration: #6a1a21 underline; font-size: large">Select Item for edit</span>
+                                <a class="dropdown-item" href="#name">Full Name</a>
+                                <a class="dropdown-item" href="#username">Username</a>
+                                <a class="dropdown-item" href="#email">Email</a>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+<?php require_once ("Views/template/footer.phtml"); ?>
+<!--Popup for Full Name-->
+<div id="name" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <form method="post" action="../personalProfile.php">
+            <div class="form-outline mb-4">
+                <label class="form-label" style="font-weight: bold; color: red" for="form2Example17">Please note you are about to change your Full Name</label>
+                <input type="text" minlength="5" maxlength="30" id="form2Example17" class="form-control form-control-lg" name="name" value="<?php echo $view->user->getRealName(); ?>" required/>
+            </div>
+            <div class="content">
+                <button  type="submit" name="editName" class="btn editpop" style="display: block; margin-right: auto; margin-left:auto">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Popup for USER Name-->
+<div id="username" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <form method="post" action="../personalProfile.php">
+            <div class="form-outline mb-4">
+                <label class="form-label" style="font-weight: bold; color: red" for="form2Example17">Please note you are about to change your username</label>
+                <input type="text" minlength="4" maxlength="15" id="form2Example17" class="form-control form-control-lg" name="username" value="<?php echo $view->user->getUserName(); ?>" required/>
+            </div>
+            <div class="content">
+                <button  type="submit" name="editUsername" class="btn editpop" style="display: block; margin-right: auto; margin-left:auto">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Popup for Email Address-->
+<div id="email" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <form method="post" action="../personalProfile.php">
+            <div class="form-outline mb-4">
+                <label class="form-label" style="font-weight: bold; color: red" for="form2Example17">Please note you are about to change your Email Address</label>
+                <input type="email" minlength="7" maxlength="40" id="form2Example17" class="form-control form-control-lg" name="email" value="<?php echo $view->user->getEmailAddress(); ?>" required/>
+            </div>
+            <div class="content">
+                <button  type="submit" name="editEmail" class="btn editpop" style="display: block; margin-right: auto; margin-left:auto">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Popup for Bio-->
+<div id="bio" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <form method="post" action="../personalProfile.php">
+            <div class="form-outline mb-4">
+                <label class="form-label" style="color: #6a1a21; font-family: 'French Script MT'; font-size: xxx-large; color: white" for="form2Example17">Bio</label>
+                <textarea style="height: 30%" maxlength="550" type="text" id="form2Example17" class="form-control form-control-lg" name="bio" value="<?php echo $view->user->getBio(); ?>"><?php echo $view->user->getBio(); ?></textarea>
+            </div>
+            <div class="content">
+                <button  type="submit" name="editBio" class="btn editpop" style="display: block; margin-right: auto; margin-left:auto">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Popup for Profile picture change-->
+<div id="profilepic" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <form method="post" action="../personalProfile.php" enctype="multipart/form-data">
+            <div class="form-outline mb-4">
+                <label class="form-label" style="color: #6a1a21; font-family: 'French Script MT'; font-size: xxx-large; color: white" for="form2Example17">A Better Pic?</label>
+                <input type="file" id="form2Example17" class="form-control form-control-lg" name="profilepic" value="" style="background-color: #6a1a21" required/>
+            </div>
+            <?php
+            if(isset($view->_sizeError)){
+            echo "<label style=' color:#ff0000; font-size: x-large'>" .$view->_sizeError . "</label>";
+            }
+            if(isset($view->_error)){
+                echo "<label style=' color:#ff0000; font-size: x-large'>" .$view->_error . "</label>";
+            }
+            if(isset($view->_typeError)){
+                echo "<label style=' color:#ff0000; font-size: x-large'>" .$view->_typeError . "</label>";
+            }
+            ?>
+            <div class="content">
+                <button  type="submit" name="editProfilePic" class="btn editpop" value="upload" style="display: block; margin-right: auto; margin-left:auto">Save</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Popup for Post -->
+<div id="post" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <form method="post" action="../personalProfile.php" enctype="multipart/form-data">
+            <div class="form-outline mb-4">
+                <label class="form-label" style="color: #6a1a21; font-family: 'French Script MT'; font-size: xxx-large; color: white" for="form2Example17">Yeah time to post!</label>
+                <input type="file" id="form2Example17" class="form-control form-control-lg" name="post" value="" style="background-color: lightblue" required/>
+            </div>
+            <?php
+            if(isset($view->_sizeError)){
+                echo "<label style=' color:#ff0000; font-size: x-large'>" .$view->_sizeError . "</label>";
+            }
+            if(isset($view->_error)){
+                echo "<label style=' color:#ff0000; font-size: x-large'>" .$view->_error . "</label>";
+            }
+            if(isset($view->_typeError)){
+                echo "<label style=' color:#ff0000; font-size: x-large'>" .$view->_typeError . "</label>";
+            }
+            ?>
+            <div class="form-outline mb-4">
+                <label class="form-label" style="color: #6a1a21; font-family: cursive; font-size: x-large; color: white" for="form2Example17">Tag</label>
+                <textarea style="height: 20%" maxlength="200" type="text" id="form2Example17" class="form-control form-control-lg" name="tag" value=""></textarea>
+            </div>
+            <div class="content">
+                <button  type="submit" name="post" class="btn editpop" value="upload" style="display: block; margin-right: auto; margin-left:auto">POST</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Popup for Text Post-->
+<div id="textPost" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <form method="post" action="../personalProfile.php">
+            <div class="form-outline mb-4">
+                <label class="form-label" style="color: #6a1a21; font-family: 'French Script MT'; font-size: xxx-large; color: white" for="form2Example17">Post Text</label>
+                <textarea style="height: 30%" maxlength="550" type="text" id="form2Example17" class="form-control form-control-lg" name="text" value=" "></textarea>
+            </div>
+            <div class="content">
+                <button  type="submit" name="textPost" class="btn editpop" style="display: block; margin-right: auto; margin-left:auto">Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
